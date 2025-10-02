@@ -14,5 +14,5 @@ export default defineConfig({
     }),
     tailwindcss(),
   ],
-  base: "https://matiascardoso-000.github.io/Livinn"
+  base: "/Livinn/"
 });

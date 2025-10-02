@@ -72,7 +72,7 @@ export const LoginForm: React.FC = () => {
                   </Link>{" "}
                   <Link
                     className="text-sm text-orange-500 hover:underline"
-                    to="/register"
+                    to="Livinn/register"
                   >
                     ¿No tienes cuenta?
                   </Link>
