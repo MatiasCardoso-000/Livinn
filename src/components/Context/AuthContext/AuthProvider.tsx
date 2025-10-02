@@ -9,14 +9,16 @@ export const AuthProvider: React.FC<{ children?: React.ReactNode }> = ({
 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  const login = (user: { email: string; password: string }) => {
-    localStorage.setItem("user", JSON.stringify(user.email));
+  const login = (email: string) => {
+    localStorage.setItem("user", JSON.stringify(email));
     localStorage.setItem("sessionActive", "true");
     setIsAuthenticated(true);
     setUser(user);
   };
 
   const logout = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("sessionActive");
     setUser({} as AuthState);
     setIsAuthenticated(false);
   };

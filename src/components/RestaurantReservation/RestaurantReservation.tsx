@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import useRestaurants from '../../hooks/useRestaurants';
@@ -30,12 +30,12 @@ export const RestaurantReservation: React.FC = () => {
           <h2 className="text-2xl font-semibold text-gray-900 mb-4">
             Restaurante no encontrado
           </h2>
-          <Button
-            onClick={() => navigate('/')}
+          <Link
+            to={'/'}
             className="bg-orange-500 text-white hover:bg-orange-600"
           >
             Volver al inicio
-          </Button>
+          </Link>
         </div>
       </div>
     );
@@ -117,6 +117,7 @@ export const RestaurantReservation: React.FC = () => {
               // Navegar a la página de confirmación
               navigate('/reservation-confirmation');
               setReservations([reservationDetails])
+              setReservations(prev => [...prev, reservationDetails]);
               setSubmitting(false);
             }}
           >

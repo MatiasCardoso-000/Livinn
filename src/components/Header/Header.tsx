@@ -1,16 +1,12 @@
 import { useState } from "react";
 import useAuth from "../../hooks/useAuth";
-import { Field, Form, Formik } from "formik";
-import Button from "../Button/Button";
 import { Link } from "react-router-dom";
-import useSearch from "../../hooks/useSearch";
+
 
 export const Header: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const { isAuthenticated, logout } = useAuth();
-  const { setSearchValue} = useSearch();
   const storagedUser = JSON.parse(localStorage.getItem("user") || "[]");
-
 
   return (
     <header className="bg-gradient-to-r from-gray-50 via-white to-gray-50 px-6 py-6 shadow-sm border-b border-gray-100 rounded-b-xl">
@@ -91,18 +87,18 @@ export const Header: React.FC = () => {
                   </>
                 ) : (
                   <>
-                    <a
-                      href="/login"
+                    <Link
+                      to="/login"
                       className="block px-4 py-2 text-sm text-blue-700 hover:bg-blue-50"
                     >
                       Iniciar sesión
-                    </a>
-                    <a
-                      href="/register"
+                    </Link>
+                    <Link
+                      to="/register"
                       className="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-orange-500 transition-colors"
                     >
                       Registrarse
-                    </a>
+                    </Link>
                   </>
                 )}
               </div>
@@ -111,59 +107,6 @@ export const Header: React.FC = () => {
         </div>
       </div>
 
-      <h1 className="text-center text-4xl font-semibold text-gray-900 mb-6">
-        Busca <span className="text-orange-500">tu lugar favorito</span>
-      </h1>
-
-      <Formik
-        initialValues={{
-          restaurant: "",
-          date: "",
-          time: new Date(),
-          amount: "",
-        }}
-        onSubmit={(values, { setSubmitting }) => {
-          setSearchValue(values.restaurant);
-          setSubmitting(false);
-        }}
-      >
-        {({ handleSubmit }) => (
-          <Form onSubmit={handleSubmit} className="w-full">
-            <div className="w-full flex flex-col md:flex-row items-center gap-3">
-              <Field
-                name="restaurant"
-                autoComplete="off"
-                type="text"
-                placeholder="Restaurante"
-                className="w-full md:flex-1 px-3 py-2 border border-blue-200 rounded-md focus:ring-2 focus:ring-blue-300"
-              />
-
-              <Field
-                name="date"
-                type="date"
-                className="w-full md:flex-1 px-3 py-2 border border-gray-200 rounded-md focus:ring-2 focus:ring-orange-200 focus:border-orange-300 transition-colors"
-              />
-
-              {/* <Field
-                name="time"
-                type="time"
-                className="w-full md:flex-1 px-3 py-2 border border-gray-200 rounded-md focus:ring-2 focus:ring-orange-200 focus:border-orange-300 transition-colors"
-              /> */}
-
-              <Field
-                name="amount"
-                type="number"
-                placeholder="Personas"
-                className="w-full md:flex-1 px-3 py-2 border border-gray-200 rounded-md focus:ring-2 focus:ring-orange-200 focus:border-orange-300 transition-colors"
-              />
-
-              <div className="w-full md:w-auto ">
-                <Button type="submit" className="w-full bg-orange-500 text-white py-2 px-4 rounded-md hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 transition-colors disabled:opacity-50">Buscar</Button>
-              </div>
-            </div>
-          </Form>
-        )}
-      </Formik>
     </header>
   );
 };

@@ -65,7 +65,7 @@ export const ReservationConfirmation = () => {
             <div className="py-4 grid grid-cols-3 gap-4">
               <dt className="text-sm font-medium text-gray-500">Fecha</dt>
               <dd className="text-sm text-gray-900 col-span-2">
-                {new Date(reservation.date).toLocaleDateString('es-AR', {
+                {new Date(reservation.date + 'T00:00:00').toLocaleDateString('es-AR', {
                   weekday: 'long',
                   year: 'numeric',
                   month: 'long',

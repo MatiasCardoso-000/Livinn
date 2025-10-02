@@ -1,20 +1,78 @@
-import React from 'react'
-import { Form } from '../Form/Form'
-import { Input } from '../Input/Input'
-import { Button } from '../Button/Button'
+import React from "react";
 
-export const RegisterForm: React.FC = () => {
+import { Button } from "../Button/Button";
+import { Formik, Form,Field} from "formik";
+import { Link } from "react-router-dom";
+
+export const RegisterForm = () => {
   return (
-    <div className="max-w-md mx-auto">
-      <Form onSubmit={(e) => e.preventDefault()}>
-        <h3 className="text-xl font-semibold text-blue-800">Create account</h3>
-        <Input label="Full name" type="text" placeholder="Your name" required />
-        <Input label="Email" type="email" placeholder="you@example.com" required />
-        <Input label="Password" type="password" placeholder="••••••••" required />
-        <Button type="submit">Register</Button>
-      </Form>
-    </div>
-  )
-}
+    <div className="min-h-screen flex items-center justify-center bg-orange-50 px-4">
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8">
+        <Formik
+          initialValues={{
+            email: "",
+            password: "",
+          }}
+          onSubmit={(values) => {
+          }}
+        >
+          {({ handleSubmit }) => (
+            <Form onSubmit={handleSubmit}>
+              <h3 className="text-2xl font-bold text-orange-500 mb-4 text-center">
+                Registro
+              </h3>
 
-export default RegisterForm
+              <div className="space-y-4 flex flex-col gap-3">
+                <Field
+                  label="Email"
+                  type="email"
+                  name="email"
+                  placeholder="you@example.com"
+                  required
+                />
+
+
+                 <Field
+                  label="Nombre"
+                  type="text"
+                  name="nombre"
+                  placeholder="Nombre"
+                  required
+                />
+
+                <Field
+                  label="Password"
+                  type="password"
+                  name="password"
+                  placeholder="••••••••"
+                  required
+                />
+              </div>
+
+              <div className="flex flex-col gap-2 justify-between mt-4">
+                <div className="flex justify-between">
+                  <Link
+                    className="text-sm text-orange-500 hover:underline"
+                    to="/login"
+                  >
+                    ¿Ya tienes cuenta?
+                  </Link>
+                </div>
+              </div>
+
+              <div className="mt-6">
+                <Button
+                  type="submit"
+                  className="w-full bg-orange-500 text-white hover:bg-orange-600 py-1 rounded-md cursor-pointer"
+                >
+                  Iniciar sesión
+                </Button>
+              </div>
+            </Form>
+          )}
+        </Formik>
+      </div>
+    </div>)
+};
+
+export default RegisterForm;

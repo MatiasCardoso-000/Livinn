@@ -1,16 +1,27 @@
-import type { Restaurants } from "../components/RestaurantCard/RestaurantCard"
-
-
+import type { Restaurants } from "../types/restaurantes.type";
 
 export const useFilters = () => {
+  const filterRestaurants = (
+    restaurantes: Restaurants[],
+    searchRestaurant: string,
+    searchForCapacity: number,
+    searchForCategory:string,
+    searchForPrice:number
+  ) => {
+    return restaurantes.filter((res) => {
+      const matchesName = res.name
+        .toLocaleLowerCase()
+        .includes(searchRestaurant.toLocaleLowerCase());
+      const matchesCapacity = res.capacity >= searchForCapacity;
+      const matchesCategory = res.category
+        .toLocaleLowerCase()
+        .includes(searchForCategory.toLocaleLowerCase());
+      const matchesPrice = res.average_price >= searchForPrice;
 
-  const filterRestaurants = (restaurantes: Restaurants[], searchValue:string) => {
-   return restaurantes.filter(res => {
-      if(res.name.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase())){
-        return res
-      }
-    })
-  }
+      
+      return matchesName && matchesCapacity && matchesCategory && matchesPrice;
+    });
+  };
 
- return {filterRestaurants}
-}
+  return { filterRestaurants };
+};

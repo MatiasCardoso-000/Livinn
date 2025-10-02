@@ -1,16 +1,8 @@
 import React, { useState } from "react";
 import { RestaurantsContext } from "./RestaurantsContext";
-import type { Restaurants } from "../../RestaurantCard/RestaurantCard";
 import RESTAURANTS from "../../../data/restaurants";
-
-export interface ReservationDetails {
-  restaurantName: string;
-  date: string;
-  time: string;
-  people: number;
-  reservationId: string;
-}
-
+import type { Restaurants } from "../../../types/restaurantes.type";
+import type { ReservationDetails } from "../../../types/reservationDetail.types";
 interface RestaurantsProviderProps {
   children: React.ReactNode;
 }
@@ -20,7 +12,7 @@ export const RestaurantsProvider = ({ children }: RestaurantsProviderProps) => {
   const [reservations, setReservations] = useState<ReservationDetails[]>([]);
 
   const handleReservations = (reservation: ReservationDetails) => {
-    setReservations([reservation]);
+    setReservations((prevReservations) => [...prevReservations, reservation]);
   };
 
   return (

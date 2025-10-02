@@ -7,7 +7,7 @@ export interface AuthState {
 }
 
 export interface AuthContextValue extends AuthState {
-  login: (user: { email: string; password: string }) => void;
+  login: ( email: string, password: string) => void;
   logout: () => void;
   isAuthenticated:boolean;
 }

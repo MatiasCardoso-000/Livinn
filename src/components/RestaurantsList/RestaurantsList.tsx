@@ -1,27 +1,31 @@
-import RestaurantCard from '../RestaurantCard/RestaurantCard'
-import useRestaurants from '../../hooks/useRestaurants'
-import { useFilters } from '../../hooks/useFilters'
-import useSearch from '../../hooks/useSearch'
+import {Aside,RestaurantCard} from '../../components/index'
+import {useSearch,useFilters,useRestaurants} from '../../hooks/index'
 
 export const RestaurantsList = () => {
-
-
-
-  const {restaurants} = useRestaurants()
-  const {filterRestaurants} = useFilters()
-  const {searchValue} = useSearch()
-  const filteredRestaurants = filterRestaurants(restaurants, searchValue)
+  const { restaurants } = useRestaurants();
+  const { filterRestaurants } = useFilters();
+  const { searchRestaurant, searchForCapacity ,searchForCategory,searchForPrice} = useSearch();
+  const filteredRestaurants = filterRestaurants(
+    restaurants,
+    searchRestaurant,
+    searchForCapacity,
+    searchForCategory,
+    searchForPrice
+  );
 
   return (
-    <section className="max-w-6xl mx-auto py-8 px-4">
-      <h2 className="text-2xl font-semibold text-blue-800 mb-6">Restaurantes</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredRestaurants.map((r) => (
-          <RestaurantCard key={r.id} {...r} />
-        ))}
-      </div>
-    </section>
-  )
-}
+    <div className="max-w-7xl mx-auto py-8 px-4 flex flex-col md:flex-row gap-8">
+      <Aside />
+      <main className="w-full ">
+        <h2 className="text-3xl font-bold text-gray-900 mb-6">Restaurantes</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+          {filteredRestaurants.map((r) => (
+            <RestaurantCard key={r.id} {...r} />
+          ))}
+        </div>
+      </main>
+    </div>
+  );
+};
 
-export default RestaurantsList
+export default RestaurantsList;

@@ -1,7 +1,7 @@
 import { Layout } from "./components/Layout/Layout";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import RestaurantsList from "./components/RestaurantsList/RestaurantsList";
-import { LoginForm } from "./components";
+import { LoginForm, RegisterForm } from "./components";
 import { Contact } from "./pages/Contact/Contact";
 import { ReservationConfirmation } from "./components/ReservationConfirmation/ReservationConfirmation";
 import { RestaurantReservation } from "./components/RestaurantReservation/RestaurantReservation";
@@ -10,6 +10,7 @@ export const AppRouter = () => {
     <Router>
       <Routes>
         <Route path="/login" element={<LoginForm/>}/>
+        <Route path="/register" element={<RegisterForm/>}/>
         <Route path="/" element={<Layout />}>
           <Route index element={<RestaurantsList />} />
           <Route path="/contact" element={<Contact />} />
