@@ -11,6 +11,7 @@ export const Aside = () => {
     searchForPrice,
     setIsAvaiable,
     isAvailable,
+    setSearchCity
   } = useSearch();
 
   return (
@@ -24,6 +25,7 @@ export const Aside = () => {
           category: "",
           price: searchForPrice,
           availability: isAvailable,
+          location: ""
         }}
         onSubmit={(values, { setSubmitting }) => {
           setSearchRestaurant(values.restaurant);
@@ -32,6 +34,7 @@ export const Aside = () => {
           setSearchForPrice(values.price);
           setSubmitting(false);
           setIsAvaiable(values.availability);
+          setSearchCity(values.location)
         }}
       >
         {({ handleSubmit}) => (
@@ -84,6 +87,23 @@ export const Aside = () => {
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-transparent"
               />
             </div>
+
+              <div>
+              <label
+                htmlFor="location"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
+                Ciudad
+              </label>
+              <Field
+                id="location"
+                name="location"
+                type="text"
+                placeholder="Ciudad"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+              />
+            </div>
+
 
             <div>
               <label

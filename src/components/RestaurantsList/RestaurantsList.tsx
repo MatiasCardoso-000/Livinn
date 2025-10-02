@@ -10,6 +10,7 @@ export const RestaurantsList = () => {
     searchForCategory,
     searchForPrice,
     isAvailable,
+    searchCity,
   } = useSearch();
   const filteredRestaurants = filterRestaurants(
     restaurants,
@@ -17,7 +18,8 @@ export const RestaurantsList = () => {
     searchForCapacity,
     searchForCategory,
     searchForPrice,
-    isAvailable 
+    isAvailable,
+    searchCity
   );
 
   return (
@@ -26,9 +28,11 @@ export const RestaurantsList = () => {
       <main className="w-full ">
         <h2 className="text-3xl font-bold text-gray-900 mb-6">Restaurantes</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
-          {filteredRestaurants.map((r) => (
-            <RestaurantCard key={r.id} {...r} />
-          ))}
+          {filteredRestaurants.length > 0 ? (
+            filteredRestaurants.map((r) => <RestaurantCard key={r.id} {...r} />)
+          ) : (
+            <div className="w-full text-4xl">No hay resultados</div>
+          )}
         </div>
       </main>
     </div>

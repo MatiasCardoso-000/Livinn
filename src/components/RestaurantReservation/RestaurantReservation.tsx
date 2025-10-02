@@ -1,27 +1,27 @@
-import React from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
-import { Formik, Form, Field } from 'formik';
-import * as Yup from 'yup';
-import useRestaurants from '../../hooks/useRestaurants';
-import Button from '../Button/Button';
+import React from "react";
+import { useParams, useNavigate, Link } from "react-router-dom";
+import { Formik, Form, Field } from "formik";
+import * as Yup from "yup";
+import useRestaurants from "../../hooks/useRestaurants";
+import Button from "../Button/Button";
 
 const ReservationSchema = Yup.object().shape({
-  date: Yup.string().required('La fecha es requerida'),
-  time: Yup.string().required('La hora es requerida'),
+  date: Yup.string().required("La fecha es requerida"),
+  time: Yup.string().required("La hora es requerida"),
   people: Yup.number()
-    .required('El número de personas es requerido')
-    .min(1, 'Mínimo 1 persona')
-    .max(20, 'Máximo 20 personas'),
-  name: Yup.string().required('Tu nombre es requerido'),
-  email: Yup.string().email('Email inválido').required('El email es requerido'),
-  phone: Yup.string().required('El teléfono es requerido'),
+    .required("El número de personas es requerido")
+    .min(1, "Mínimo 1 persona")
+    .max(20, "Máximo 20 personas"),
+  name: Yup.string().required("Tu nombre es requerido"),
+  email: Yup.string().email("Email inválido").required("El email es requerido"),
+  phone: Yup.string().required("El teléfono es requerido"),
 });
 
 export const RestaurantReservation: React.FC = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { restaurants ,setReservations} = useRestaurants();
-  const restaurant = restaurants.find(res => res.id === Number(id));
+  const { restaurants, setReservations } = useRestaurants();
+  const restaurant = restaurants.find((res) => res.id === Number(id));
 
   if (!restaurant) {
     return (
@@ -31,7 +31,7 @@ export const RestaurantReservation: React.FC = () => {
             Restaurante no encontrado
           </h2>
           <Link
-            to={'/'}
+            to={"/"}
             className="bg-orange-500 text-white hover:bg-orange-600"
           >
             Volver al inicio
@@ -44,7 +44,7 @@ export const RestaurantReservation: React.FC = () => {
   const generateTimeSlots = () => {
     const slots = [];
     for (let hour = 11; hour <= 23; hour++) {
-      for (const minute of ['00', '30']) {
+      for (const minute of ["00", "30"]) {
         slots.push(`${hour}:${minute}`);
       }
     }
@@ -66,18 +66,31 @@ export const RestaurantReservation: React.FC = () => {
               {restaurant.name}
             </h1>
             <div className="flex items-center mb-4">
-              <span className="text-yellow-400">⭐</span>
-              <span className="ml-1 text-gray-700">{restaurant.rating}</span>
+              <div className="flex items-center gap-2">
+                <span className="text-yellow-500">★</span>
+                <span className="text-gray-700">{restaurant.rating}</span>
+                <span
+                  className={`ml-4 px-3 py-1 rounded-full text-sm ${
+                    restaurant.availability
+                      ? "bg-green-100 text-green-800"
+                      : "bg-red-100 text-red-800"
+                  }`}
+                >
+                  {restaurant.availability ? "Disponible" : "No disponible"}
+                </span>
+              </div>
               <span className="mx-2">•</span>
               <span className="text-gray-600">{restaurant.category}</span>
             </div>
             <p className="text-gray-600 mb-4">{restaurant.description}</p>
             <div className="border-t border-gray-200 pt-4">
               <p className="text-sm text-gray-600">
-                <span className="font-medium">Ubicación:</span> {restaurant.location}
+                <span className="font-medium">Ubicación:</span>{" "}
+                {restaurant.location}
               </p>
               <p className="text-sm text-gray-600">
-                <span className="font-medium">Precio promedio:</span> ${restaurant.average_price}
+                <span className="font-medium">Precio promedio:</span> $
+                {restaurant.average_price}
               </p>
             </div>
           </div>
@@ -85,22 +98,26 @@ export const RestaurantReservation: React.FC = () => {
 
         {/* Reservation Form */}
         <div className="bg-white rounded-lg shadow-lg p-6">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6">Hacer una reserva</h2>
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6">
+            Hacer una reserva
+          </h2>
           <Formik
             initialValues={{
-              date: '',
-              time: '',
+              date: "",
+              time: "",
               people: 2,
-              name: '',
-              email: '',
-              phone: '',
-              specialRequests: '',
+              name: "",
+              email: "",
+              phone: "",
+              specialRequests: "",
             }}
             validationSchema={ReservationSchema}
             onSubmit={(values, { setSubmitting }) => {
               // Generar ID único para la reserva
-              const reservationId = `RES-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
-              
+              const reservationId = `RES-${Date.now()}-${Math.random()
+                .toString(36)
+                .substr(2, 9)}`;
+
               // Crear objeto con detalles de la reserva
               const reservationDetails = {
                 restaurantName: restaurant.name,
@@ -115,9 +132,8 @@ export const RestaurantReservation: React.FC = () => {
               };
 
               // Navegar a la página de confirmación
-              navigate('/reservation-confirmation');
-              setReservations([reservationDetails])
-              setReservations(prev => [...prev, reservationDetails]);
+              navigate("/reservation-confirmation");
+              setReservations((prev) => [...prev, reservationDetails]);
               setSubmitting(false);
             }}
           >
@@ -131,7 +147,7 @@ export const RestaurantReservation: React.FC = () => {
                     <Field
                       name="date"
                       type="date"
-                      min={new Date().toISOString().split('T')[0]}
+                      min={new Date().toISOString().split("T")[0]}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                     />
                     {errors.date && touched.date && (
@@ -149,7 +165,7 @@ export const RestaurantReservation: React.FC = () => {
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                     >
                       <option value="">Selecciona una hora</option>
-                      {generateTimeSlots().map(time => (
+                      {generateTimeSlots().map((time) => (
                         <option key={time} value={time}>
                           {time}
                         </option>
@@ -172,7 +188,9 @@ export const RestaurantReservation: React.FC = () => {
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                     />
                     {errors.people && touched.people && (
-                      <p className="mt-1 text-sm text-red-600">{errors.people}</p>
+                      <p className="mt-1 text-sm text-red-600">
+                        {errors.people}
+                      </p>
                     )}
                   </div>
 
@@ -200,7 +218,9 @@ export const RestaurantReservation: React.FC = () => {
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                     />
                     {errors.email && touched.email && (
-                      <p className="mt-1 text-sm text-red-600">{errors.email}</p>
+                      <p className="mt-1 text-sm text-red-600">
+                        {errors.email}
+                      </p>
                     )}
                   </div>
 
@@ -214,7 +234,9 @@ export const RestaurantReservation: React.FC = () => {
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                     />
                     {errors.phone && touched.phone && (
-                      <p className="mt-1 text-sm text-red-600">{errors.phone}</p>
+                      <p className="mt-1 text-sm text-red-600">
+                        {errors.phone}
+                      </p>
                     )}
                   </div>
                 </div>

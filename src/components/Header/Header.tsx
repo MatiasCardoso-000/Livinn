@@ -1,15 +1,18 @@
-import { useState } from "react";
-import useAuth from "../../hooks/useAuth";
+import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
-
+import { useAuth, useClickOutside } from "../../hooks/index";
 
 export const Header: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const { isAuthenticated, logout } = useAuth();
 
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  useClickOutside(menuRef, ()=> setMenuOpen(false))
+
   return (
     <header className="bg-gradient-to-r from-gray-50 via-white to-gray-50 px-6 py-6 shadow-sm border-b border-gray-100 rounded-b-xl">
-      <div className="max-w-6xl mx-auto flex items-center justify-between mb-4">
+      <div className="max-w-6xl mx-auto flex items-center justify-between mb-4"  ref={menuRef}>
         <Link to={"/"}>
           <h1 className="text-2xl text-orange-500 font-semibold tracking-tight hover:text-orange-600 transition-colors">
             Livinn
@@ -41,7 +44,7 @@ export const Header: React.FC = () => {
                   ? "bg-orange-500"
                   : "bg-gray-100 hover:bg-gray-200"
               }`}
-              onClick={() => setMenuOpen((v) => !v)}
+              onClick={() => setMenuOpen(!menuOpen)}
             >
               {isAuthenticated ? (
                 // Avatar icon (user logged in)
@@ -108,7 +111,6 @@ export const Header: React.FC = () => {
           </div>
         </div>
       </div>
-
     </header>
   );
 };
