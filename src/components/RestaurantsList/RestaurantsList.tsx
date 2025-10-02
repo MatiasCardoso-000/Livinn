@@ -1,16 +1,23 @@
-import {Aside,RestaurantCard} from '../../components/index'
-import {useSearch,useFilters,useRestaurants} from '../../hooks/index'
+import { Aside, RestaurantCard } from "../../components/index";
+import { useSearch, useFilters, useRestaurants } from "../../hooks/index";
 
 export const RestaurantsList = () => {
   const { restaurants } = useRestaurants();
   const { filterRestaurants } = useFilters();
-  const { searchRestaurant, searchForCapacity ,searchForCategory,searchForPrice} = useSearch();
+  const {
+    searchRestaurant,
+    searchForCapacity,
+    searchForCategory,
+    searchForPrice,
+    isAvailable,
+  } = useSearch();
   const filteredRestaurants = filterRestaurants(
     restaurants,
     searchRestaurant,
     searchForCapacity,
     searchForCategory,
-    searchForPrice
+    searchForPrice,
+    isAvailable 
   );
 
   return (

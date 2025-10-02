@@ -6,7 +6,8 @@ export const useFilters = () => {
     searchRestaurant: string,
     searchForCapacity: number,
     searchForCategory:string,
-    searchForPrice:number
+    searchForPrice:number,
+    isAvailable:boolean
   ) => {
     return restaurantes.filter((res) => {
       const matchesName = res.name
@@ -17,9 +18,9 @@ export const useFilters = () => {
         .toLocaleLowerCase()
         .includes(searchForCategory.toLocaleLowerCase());
       const matchesPrice = res.average_price >= searchForPrice;
+      const matchesIsAvailable =  isAvailable ? res.availability : res;
 
-      
-      return matchesName && matchesCapacity && matchesCategory && matchesPrice;
+      return matchesName && matchesCapacity && matchesCategory && matchesPrice &&matchesIsAvailable;
     });
   };
 

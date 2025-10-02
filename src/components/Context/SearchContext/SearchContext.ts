@@ -5,6 +5,8 @@ interface SearchContextType {
   searchForCapacity: number;
   searchForCategory: string;
   searchForPrice: number;
+  isAvailable: boolean;
+  setIsAvaiable: Dispatch<SetStateAction<boolean>>;
   setSearchForPrice: Dispatch<SetStateAction<number>>;
   setSearchForCategory: Dispatch<SetStateAction<string>>;
   setSearchRestaurant: Dispatch<SetStateAction<string>>;

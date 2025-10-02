@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 export const Header: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const { isAuthenticated, logout } = useAuth();
-  const storagedUser = JSON.parse(localStorage.getItem("user") || "[]");
 
   return (
     <header className="bg-gradient-to-r from-gray-50 via-white to-gray-50 px-6 py-6 shadow-sm border-b border-gray-100 rounded-b-xl">
@@ -72,9 +71,12 @@ export const Header: React.FC = () => {
               <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg border border-gray-100 py-2 z-20">
                 {isAuthenticated ? (
                   <>
-                    <div className="px-4 py-2 text-sm text-gray-900 font-semibold truncate">
-                      {storagedUser}
-                    </div>
+                    <Link
+                      to="/my-reservations"
+                      className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-orange-500"
+                    >
+                      Mis Reservas
+                    </Link>
                     <button
                       className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-blue-50"
                       onClick={() => {

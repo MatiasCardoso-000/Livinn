@@ -1,10 +1,10 @@
 import { Layout } from "./components/Layout/Layout";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import RestaurantsList from "./components/RestaurantsList/RestaurantsList";
-import { LoginForm, RegisterForm } from "./components";
+import { LoginForm, RegisterForm, RestaurantReservation } from "./components";
 import { Contact } from "./pages/Contact/Contact";
 import { ReservationConfirmation } from "./components/ReservationConfirmation/ReservationConfirmation";
-import { RestaurantReservation } from "./components/RestaurantReservation/RestaurantReservation";
+import UserReservations from "./components/UserReservations/UserReservations";
 export const AppRouter = () => {
   return (
     <Router>
@@ -15,6 +15,7 @@ export const AppRouter = () => {
           <Route index element={<RestaurantsList />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/reservation/:id" element={<RestaurantReservation />} />
+          <Route path="/my-reservations" element={<UserReservations />} />
           <Route path="/reservation-confirmation" element={<ReservationConfirmation />} />
         </Route>
       </Routes>

@@ -15,7 +15,7 @@ export const RestaurantCard = (restaurant: Restaurants) => {
         className="w-full h-40 object-cover"
       />
       <div className="p-4">
-        <Link to={`/details/${restaurant.id}`}>
+        <Link to={`/reservation/${restaurant.id}`}>
           <h3 className="text-lg font-semibold text-gray-900 hover:text-orange-600">
             {restaurant.name}
           </h3>

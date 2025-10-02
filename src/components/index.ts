@@ -10,3 +10,4 @@ export * from './RestaurantCard/RestaurantCard';
 export * from './RestaurantDetails/RestaurantDetails';
 export * from './RestaurantReservation/RestaurantReservation';
 export * from './RestaurantsList/RestaurantsList';
+export * from './UserReservations/UserReservations';
