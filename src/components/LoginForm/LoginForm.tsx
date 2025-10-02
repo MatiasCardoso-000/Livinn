@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 
 export const LoginForm: React.FC = () => {
-  const { login, isAuthenticated } = useAuth();
+  const { login, isAuthenticated, errors } = useAuth();
 
   const navigate = useNavigate();
 
@@ -23,8 +23,10 @@ export const LoginForm: React.FC = () => {
             email: "",
             password: "",
           }}
-          onSubmit={(values) => {
+          onSubmit={(values, { setSubmitting }) => {
             login(values.email, values.password);
+
+            setSubmitting(false);
           }}
         >
           {({ handleSubmit }) => (
@@ -43,6 +45,7 @@ export const LoginForm: React.FC = () => {
                   name="email"
                   placeholder="you@example.com"
                   required
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-transparent focus:outline-0"
                 />
 
                 <Field
@@ -51,6 +54,7 @@ export const LoginForm: React.FC = () => {
                   name="password"
                   placeholder="••••••••"
                   required
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border- focus:outline-0"
                 />
               </div>
 
@@ -86,6 +90,10 @@ export const LoginForm: React.FC = () => {
             </Form>
           )}
         </Formik>
+        {errors.length > 0 &&
+          errors.map((e, i) => {
+            return <div key={i}>{e}</div>;
+          })}
       </div>
     </div>
   );

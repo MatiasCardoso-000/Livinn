@@ -10,6 +10,7 @@ export interface AuthContextValue extends AuthState {
   login: ( email: string, password: string) => void;
   logout: () => void;
   isAuthenticated:boolean;
+  errors: string[]
 }
 
 // Context instance and hook (exported here so this file doesn't export components)

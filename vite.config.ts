@@ -8,8 +8,11 @@ export default defineConfig({
     react({
       babel: {
         plugins: [["babel-plugin-react-compiler"]],
+        
       },
+    
     }),
     tailwindcss(),
   ],
+  base: "https://matiascardoso-000.github.io/Livinn"
 });

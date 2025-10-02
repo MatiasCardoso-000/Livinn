@@ -1,4 +1,3 @@
-import React from "react";
 
 import { Button } from "../Button/Button";
 import { Formik, Form,Field} from "formik";
@@ -14,6 +13,8 @@ export const RegisterForm = () => {
             password: "",
           }}
           onSubmit={(values) => {
+            console.log(values);
+            
           }}
         >
           {({ handleSubmit }) => (
@@ -29,6 +30,7 @@ export const RegisterForm = () => {
                   name="email"
                   placeholder="you@example.com"
                   required
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border- focus:outline-0"
                 />
 
 
@@ -38,6 +40,7 @@ export const RegisterForm = () => {
                   name="nombre"
                   placeholder="Nombre"
                   required
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border- focus:outline-0"
                 />
 
                 <Field
@@ -46,6 +49,7 @@ export const RegisterForm = () => {
                   name="password"
                   placeholder="••••••••"
                   required
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border- focus:outline-0"
                 />
               </div>
 

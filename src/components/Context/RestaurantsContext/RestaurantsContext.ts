@@ -1,12 +1,12 @@
 import { createContext, type Dispatch, type SetStateAction } from 'react'
-import type { Restaurants } from '../../RestaurantCard/RestaurantCard'
-import type { Reservation } from './RestaurantsProvider'
+import type { Restaurants } from '../../../types/restaurantes.type'
+import type { ReservationDetails } from '../../../types/reservationDetail.types'
 
 export interface RestaurantsContextValue {
   restaurants: Restaurants[],
-  reservations: Reservation[],
-  setReservations: Dispatch<SetStateAction<Reservation[]>>
-  handleReservations: (reservation:Reservation) => void
+  reservations: ReservationDetails[],
+  setReservations: Dispatch<SetStateAction<ReservationDetails[]>>
+  handleReservations: (reservation:ReservationDetails) => void
 }
 
 export const RestaurantsContext = createContext<RestaurantsContextValue | undefined>(undefined)

@@ -9,14 +9,14 @@ export const AppRouter = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/login" element={<LoginForm/>}/>
-        <Route path="/register" element={<RegisterForm/>}/>
-        <Route path="/" element={<Layout />}>
+        <Route path="Livinn/login" element={<LoginForm/>}/>
+        <Route path="Livinn/register" element={<RegisterForm/>}/>
+        <Route path="Livinn/" element={<Layout />}>
           <Route index element={<RestaurantsList />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/reservation/:id" element={<RestaurantReservation />} />
-          <Route path="/my-reservations" element={<UserReservations />} />
-          <Route path="/reservation-confirmation" element={<ReservationConfirmation />} />
+          <Route path="Livinn/contact" element={<Contact />} />
+          <Route path="Livinn/reservation/:id" element={<RestaurantReservation />} />
+          <Route path="Livinn/my-reservations" element={<UserReservations />} />
+          <Route path="Livinn/reservation-confirmation" element={<ReservationConfirmation />} />
         </Route>
       </Routes>
     </Router>

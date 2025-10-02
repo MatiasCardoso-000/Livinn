@@ -4,4 +4,5 @@ export interface ReservationDetails {
   time: string;
   people: number;
   reservationId: string;
+  customerEmail:string;
 }

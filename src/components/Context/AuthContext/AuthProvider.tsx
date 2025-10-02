@@ -5,15 +5,27 @@ import type { AuthState } from "./AuthContext";
 export const AuthProvider: React.FC<{ children?: React.ReactNode }> = ({
   children,
 }) => {
-  const [user, setUser] = useState<AuthState>({} as AuthState);
+  const [user, setUser] = useState<AuthState>({
+    email: "JohnDoe@JohnDoe.com",
+    password: "1234",
+  });
 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [errors, setErrors] = useState<string[]>([]);
 
-  const login = (email: string) => {
-    localStorage.setItem("user", JSON.stringify(email));
-    localStorage.setItem("sessionActive", "true");
-    setIsAuthenticated(true);
-    setUser(user);
+  const login = (email: string, password: string) => {
+    if (user.email !== email || user.password !== password) {
+      setErrors(["Invalid email"]);
+      setErrors(["Invalid password"]);
+      setUser({} as AuthState);
+      setIsAuthenticated(false);
+    } else {
+      localStorage.setItem("user", JSON.stringify(email));
+      localStorage.setItem("sessionActive", "true");
+      setIsAuthenticated(true);
+      setUser(user);
+      setErrors([]);
+    }
   };
 
   const logout = () => {
@@ -38,7 +50,9 @@ export const AuthProvider: React.FC<{ children?: React.ReactNode }> = ({
   }, []);
 
   return (
-    <AuthContext.Provider value={{ ...user, login, logout, isAuthenticated }}>
+    <AuthContext.Provider
+      value={{ ...user, login, logout, isAuthenticated, errors }}
+    >
       {children}
     </AuthContext.Provider>
   );

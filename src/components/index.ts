@@ -7,7 +7,6 @@ export * from "./LoginForm/LoginForm";
 export * from "./RegisterForm/RegisterForm";
 export * from './ReservationConfirmation/ReservationConfirmation';
 export * from './RestaurantCard/RestaurantCard';
-export * from './RestaurantDetails/RestaurantDetails';
 export * from './RestaurantReservation/RestaurantReservation';
 export * from './RestaurantsList/RestaurantsList';
 export * from './UserReservations/UserReservations';
