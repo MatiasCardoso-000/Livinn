@@ -1,19 +1,28 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Button } from "../Button/Button";
 import useAuth from "../../hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
+import * as Yup from "yup";
 
-export const LoginForm: React.FC = () => {
-  const { login, isAuthenticated, errors } = useAuth();
+export const LoginForm = () => {
+  const { login, isAuthenticated, errors: loginErrors } = useAuth();
 
   const navigate = useNavigate();
+
+  const validateScheme = Yup.object({
+    email: Yup.string().email().required("Ingrese un correo eléctronico"),
+    password: Yup.string().min(6).required("Ingrese una contraseña"),
+  });
 
   useEffect(() => {
     if (isAuthenticated) {
       navigate("/");
     }
   }, [isAuthenticated, navigate]);
+
+
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-orange-50 px-4">
@@ -23,13 +32,13 @@ export const LoginForm: React.FC = () => {
             email: "",
             password: "",
           }}
+          validationSchema={validateScheme}
           onSubmit={(values, { setSubmitting }) => {
             login(values.email, values.password);
-
-            setSubmitting(false);
+            setSubmitting(true);
           }}
         >
-          {({ handleSubmit }) => (
+          {({ handleSubmit, errors:formikErrors,touched }) => (
             <Form onSubmit={handleSubmit}>
               <h3 className="text-2xl font-bold text-orange-500 mb-4 text-center">
                 Inicia sesión
@@ -39,23 +48,29 @@ export const LoginForm: React.FC = () => {
               </p>
 
               <div className="space-y-4 flex flex-col">
+                <label htmlFor="email">Correo eléctronico</label>
                 <Field
-                  label="Email"
                   type="email"
                   name="email"
+                  id="email"
                   placeholder="you@example.com"
-                  required
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-transparent focus:outline-0"
                 />
+                 {
+                  formikErrors.email && touched.email &&  <p className="text-white bg-red-400 p-1 text-sm">{formikErrors.email}</p>
+                }
 
+                <label htmlFor="password">Contraseña</label>
                 <Field
-                  label="Password"
                   type="password"
                   name="password"
+                  id="password"
                   placeholder="••••••••"
-                  required
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border- focus:outline-0"
                 />
+                {
+                  formikErrors.password && touched.password && <p className="text-white bg-red-400 p-1 text-sm">{formikErrors.password}</p>
+                }
               </div>
 
               <div className="flex flex-col gap-2 justify-between mt-4">
@@ -72,7 +87,7 @@ export const LoginForm: React.FC = () => {
                   </Link>{" "}
                   <Link
                     className="text-sm text-orange-500 hover:underline"
-                    to="Livinn/register"
+                    to="/register"
                   >
                     ¿No tienes cuenta?
                   </Link>
@@ -90,9 +105,9 @@ export const LoginForm: React.FC = () => {
             </Form>
           )}
         </Formik>
-        {errors.length > 0 &&
-          errors.map((e, i) => {
-            return <div key={i}>{e}</div>;
+        {loginErrors.length > 0 &&
+          loginErrors.map((e, i) => {
+            return <p className="text-white bg-red-400 p-1 text-sm mt-4 " key={i}>{e}</p>;
           })}
       </div>
     </div>

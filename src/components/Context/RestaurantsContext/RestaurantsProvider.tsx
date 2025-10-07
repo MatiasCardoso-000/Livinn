@@ -8,11 +8,26 @@ interface RestaurantsProviderProps {
 }
 
 export const RestaurantsProvider = ({ children }: RestaurantsProviderProps) => {
-  const [restaurants] = useState<Restaurants[]>(RESTAURANTS);
+  const [restaurants, setRestaurants] = useState<Restaurants[]>(RESTAURANTS);
   const [reservations, setReservations] = useState<ReservationDetails[]>([]);
+
+  
 
   const handleReservations = (reservation: ReservationDetails) => {
     setReservations((prevReservations) => [...prevReservations, reservation]);
+
+    const restaurantReserved = restaurants.findIndex((res) => {
+      return res.id === reservation.id;
+    });
+
+
+    const copiedRestaurants = structuredClone(restaurants)
+
+    if (restaurantReserved != -1) {
+      copiedRestaurants[restaurantReserved].capacity -= reservation.people;
+      setRestaurants([...copiedRestaurants])
+    }
+
   };
 
   return (

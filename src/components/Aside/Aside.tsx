@@ -11,7 +11,7 @@ export const Aside = () => {
     searchForPrice,
     setIsAvaiable,
     isAvailable,
-    setSearchCity
+    setSearchCity,
   } = useSearch();
 
   return (
@@ -25,7 +25,7 @@ export const Aside = () => {
           category: "",
           price: searchForPrice,
           availability: isAvailable,
-          location: ""
+          location: "",
         }}
         onSubmit={(values, { setSubmitting }) => {
           setSearchRestaurant(values.restaurant);
@@ -34,10 +34,10 @@ export const Aside = () => {
           setSearchForPrice(values.price);
           setSubmitting(false);
           setIsAvaiable(values.availability);
-          setSearchCity(values.location)
+          setSearchCity(values.location);
         }}
       >
-        {({ handleSubmit}) => (
+        {({ handleSubmit }) => (
           <Form onChange={handleSubmit} className="space-y-4">
             <div>
               <label
@@ -83,12 +83,24 @@ export const Aside = () => {
                 id="category"
                 name="category"
                 type="text"
+                as="select"
                 placeholder="Categoria"
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-              />
+              >
+                <option value="parrilla">Parrilla</option>
+                <option value="japonesa">Japonesa</option>
+                <option value="italiana">Italiana</option>
+                <option value="regional">Regional</option>
+                <option value="francesa">Francesa</option>
+                <option value="vegana">Vegana</option>
+                <option value="mariscos">Mariscos</option>
+                <option value="mexicana">Mexicana</option>
+                <option value="americana">Americana</option>
+                <option value="cafetería">Cafetería</option>
+              </Field>
             </div>
 
-              <div>
+            <div>
               <label
                 htmlFor="location"
                 className="block text-sm font-medium text-gray-700 mb-1"
@@ -103,7 +115,6 @@ export const Aside = () => {
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-transparent"
               />
             </div>
-
 
             <div>
               <label

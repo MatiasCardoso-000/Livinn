@@ -28,7 +28,7 @@ export const RestaurantCard = (restaurant: Restaurants) => {
           <span className="text-sm text-orange-500">{restaurant.category}</span>
         </div>
         <p className="mt-3 text-sm text-gray-600">{restaurant.description}</p>
-        <p className="mt-3 text-sm text-gray-600">Reserva para: {restaurant.capacity} personas </p>
+        <p className="mt-3 text-sm text-gray-600">Lugares disponibles: {restaurant.capacity} </p>
         <div className="mt-4 flex items-center justify-between">
           <span className="text-sm font-semibold text-gray-800">
             ${restaurant.average_price}

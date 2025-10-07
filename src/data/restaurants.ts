@@ -10,7 +10,7 @@ export const RESTAURANTS = [
     image: "https://imgs.search.brave.com/N0NebudYaxtHes7XdhNK49rFAwhyTsoAPtWAleSu_jA/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvNTQx/Mzk5Mjg0L2VzL2Zv/dG8vaW50ZXJpb3It/b2YtdmVjY2hpYS10/cmF0dG9yaWEtYnVy/YWxsaS5qcGc_cz02/MTJ4NjEyJnc9MCZr/PTIwJmM9cV80STJW/enZTdENWTWtIZFFz/czc1RFBIM1pUWUh3/M3VORmN3MXF2aVpy/TT0",
     category: "Italiana",
     average_price: 8500,
-    capacity: 6
+    capacity: 62
   },
   {
     id: 2,
@@ -36,7 +36,7 @@ export const RESTAURANTS = [
     image: "https://imgs.search.brave.com/vPbofdmwqioA9MrOHu2vY-wios5At5KG0dkmKtF2nhA/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9zMy1t/ZWRpYTAuZmwueWVs/cGNkbi5jb20vYnBo/b3RvL3FpVGZ6cE53/RDRNekF4ay10ak85/Y0EvbC5qcGc",
     category: "Japonesa",
     average_price: 10000,
-    capacity: 4
+    capacity: 22
   },
   {
     id: 4,
@@ -49,7 +49,7 @@ export const RESTAURANTS = [
     image: "https://imgs.search.brave.com/p9dPVb1Rk5uO4j-r5SCqLdKfA9OE-elBECmw1BNkFYs/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jZG4u/Y3Vwb25pZGFkLnBl/L2ltYWdlcy9EZWFs/cy9idWZmZXRjcmlv/bGxveW1hcmlubzEu/anBn",
     category: "Regional",
     average_price: 7000,
-    capacity: 8
+    capacity: 80
   },
   {
     id: 5,
@@ -62,7 +62,7 @@ export const RESTAURANTS = [
     image: "https://imgs.search.brave.com/2kaXNzorue6idpETZWzHkA-Ax0d6hlEemQ9MoYIPnRc/rs:fit:500:0:1:0/g:ce/aHR0cDovL3d3dy5k/b2l0aW5wYXJpcy5j/b20vZmlsZXMvMjAy/MS9iYXJzLWV0LXJl/c3Rvcy9iaXN0cm90/LzA2L2Jpc3Ryb3Rz/LXBhcmlzL3BoYXJh/bW9uZC5qcGc",
     category: "Francesa",
     average_price: 15000,
-    capacity: 6
+    capacity: 61
   },
   {
     id: 6,
@@ -75,7 +75,7 @@ export const RESTAURANTS = [
     image: "https://imgs.search.brave.com/m_Iy5HG835Qtn96RRjn0U31QObL98ZNi1UQLmy-PzA0/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9kZW5u/aXNmb29kc2Vydmlj/ZS5jb20vd3AtY29u/dGVudC91cGxvYWRz/LzIwMjIvMDkvdmVn/Z2llLWxpZmUtUXVp/bm9hLUJ1cmdlci03/NjAtMzgweDIxMC5q/cGc",
     category: "Vegana",
     average_price: 6000,
-    capacity: 5
+    capacity: 53
   },
   {
     id: 7,
@@ -101,7 +101,7 @@ export const RESTAURANTS = [
     image: "https://imgs.search.brave.com/vhJVSUarzNzblCMJOoOUDnFyV2IY-r9Il8-BMzRjpgg/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/cmluY29ubWV4aWNh/bm9wb250ZXZlZHJh/LmNvbS93cC1jb250/ZW50L3VwbG9hZHMv/MjAyNC8wNS9SaW5j/b24tTWV4aWNhbm8t/RXNwYWNpby1lc3Rh/bnRlcmlhLmpwZw",
     category: "Mexicana",
     average_price: 7500,
-    capacity: 6
+    capacity: 61
   },
   {
     id: 9,
@@ -114,7 +114,7 @@ export const RESTAURANTS = [
     image: "https://imgs.search.brave.com/8tA63qparQ2L977LJI-5rjYyjDz7cbIWSRNSvRj__Lc/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9zMy1t/ZWRpYTAuZmwueWVs/cGNkbi5jb20vYnBo/b3RvL3JNaEZBcFVz/OFdXY2FmeEJ2WlVj/S3cvbC5qcGc",
     category: "Americana",
     average_price: 5000,
-    capacity: 4
+    capacity: 42
   },
   {
     id: 10,
@@ -127,7 +127,7 @@ export const RESTAURANTS = [
     image: "https://imgs.search.brave.com/YTEbfX5rHR77yHkri_pAfhsL2tKx4rkg1RZcYbrZrxU/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvODk5/MTg1MDA0L2VzL2Zv/dG8vY2FmJUMzJUE5/LXBsYXphLWVuLWNo/b25ncWluZy1jaGlu/YS5qcGc_cz02MTJ4/NjEyJnc9MCZrPTIw/JmM9X1JUbW0xRFVs/Y2ZrUEdoczkwWkZ2/LXBRYjVWVjB6M3JL/b3VtVXpVa0VxMD0",
     category: "Cafetería",
     average_price: 3500,
-    capacity: 3
+    capacity: 30
   },
 ];
 

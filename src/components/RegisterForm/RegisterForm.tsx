@@ -57,7 +57,7 @@ export const RegisterForm = () => {
                 <div className="flex justify-between">
                   <Link
                     className="text-sm text-orange-500 hover:underline"
-                    to="Livinn/login"
+                    to="/login"
                   >
                     ¿Ya tienes cuenta?
                   </Link>

@@ -20,7 +20,7 @@ const ReservationSchema = Yup.object().shape({
 export const RestaurantReservation: React.FC = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { restaurants, setReservations } = useRestaurants();
+  const { restaurants, handleReservations } = useRestaurants();
   const restaurant = restaurants.find((res) => res.id === Number(id));
 
   if (!restaurant) {
@@ -110,6 +110,7 @@ export const RestaurantReservation: React.FC = () => {
               email: "",
               phone: "",
               specialRequests: "",
+              id:restaurant.id
             }}
             validationSchema={ReservationSchema}
             onSubmit={(values, { setSubmitting }) => {
@@ -129,11 +130,12 @@ export const RestaurantReservation: React.FC = () => {
                 customerEmail: values.email,
                 customerPhone: values.phone,
                 specialRequests: values.specialRequests,
+                id: values.id
               };
 
               // Navegar a la página de confirmación
               navigate("/reservation-confirmation");
-              setReservations((prev) => [...prev, reservationDetails]);
+              handleReservations(reservationDetails);
               setSubmitting(false);
             }}
           >
