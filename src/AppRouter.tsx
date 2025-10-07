@@ -1,5 +1,5 @@
 import { Layout } from "./components/Layout/Layout";
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import { Route, HashRouter as Router, Routes } from "react-router-dom";
 import RestaurantsList from "./components/RestaurantsList/RestaurantsList";
 import { LoginForm, RegisterForm, RestaurantReservation } from "./components";
 import { Contact } from "./pages/Contact/Contact";
@@ -8,7 +8,7 @@ import UserReservations from "./components/UserReservations/UserReservations";
 
 export const AppRouter = () => {
   return (
-    <Router basename="/Livinn/">
+    <Router basename="/">
       <Routes>
         <Route path="/login" element={<LoginForm />} />
         <Route path="/register" element={<RegisterForm />} />

@@ -6,7 +6,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [errors, setErrors] = useState<string[]>([]);
 
-  const [user, setUser] = useState<AuthState>({
+  const [user] = useState<AuthState>({
     email: "JohnDoe@JohnDoe.com",
     password: "123456",
   });
