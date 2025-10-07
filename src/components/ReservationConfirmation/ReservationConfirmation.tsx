@@ -96,7 +96,7 @@ export const ReservationConfirmation = () => {
               // Aquí podrías agregar lógica para descargar o enviar por email
               console.log('Descargando confirmación...');
             }}
-            className="bg-orange-500 text-white hover:bg-orange-600"
+            className="bg-orange-500 text-white hover:bg-orange-600 px-2 py-1 "
           >
             Descargar confirmación
           </Button>

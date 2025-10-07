@@ -266,7 +266,7 @@ export const RestaurantReservation: React.FC = () => {
                   </Button>
                   <Button
                     type="submit"
-                    className="bg-orange-500 text-white hover:bg-orange-600"
+                    className="bg-orange-500 text-white hover:bg-orange-600 py-1 px-2"
                   >
                     Confirmar reserva
                   </Button>
