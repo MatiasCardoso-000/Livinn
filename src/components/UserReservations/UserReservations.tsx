@@ -1,14 +1,14 @@
-import { Link } from 'react-router-dom';
-import { useRestaurants } from '../../hooks';
+import { Link } from "react-router-dom";
+import { useRestaurants } from "../../hooks";
 
 export const UserReservations = () => {
+  const storagedUser = JSON.parse(localStorage.getItem("user") || "");
   const { reservations } = useRestaurants();
-  const storagedUser = JSON.parse(localStorage.getItem("user") || '""');
 
   // Filtra las reservas para el usuario actual
-  const userReservations = reservations.filter(
-    (reservation) => reservation.customerEmail === storagedUser
-  );
+  // const userReservations = reservations.filter(
+  //   (reservation) => reservation.customerEmail === storagedUser
+  // );
 
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
@@ -17,9 +17,9 @@ export const UserReservations = () => {
           Mis Reservas
         </h1>
 
-        {userReservations.length > 0 ? (
+        {reservations.length > 0 ? (
           <div className="space-y-6">
-            {userReservations.map((reservation) => (
+            {reservations.map((reservation) => (
               <div
                 key={reservation.reservationId}
                 className="bg-white rounded-lg shadow-md p-6 border border-gray-100 transition-transform hover:scale-[1.02]"
@@ -35,7 +35,11 @@ export const UserReservations = () => {
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 text-sm">
                   <div>
                     <p className="font-medium text-gray-500">Fecha</p>
-                    <p className="text-gray-800">{new Date(reservation.date + 'T00:00:00').toLocaleDateString('es-AR')}</p>
+                    <p className="text-gray-800">
+                      {new Date(
+                        reservation.date + "T00:00:00"
+                      ).toLocaleDateString("es-AR")}
+                    </p>
                   </div>
                   <div>
                     <p className="font-medium text-gray-500">Hora</p>
@@ -51,9 +55,7 @@ export const UserReservations = () => {
           </div>
         ) : (
           <div className="text-center bg-white p-10 rounded-lg shadow-sm">
-            <p className="text-gray-600 mb-4">
-              Aún no tienes ninguna reserva.
-            </p>
+            <p className="text-gray-600 mb-4">Aún no tienes ninguna reserva.</p>
             <Link
               to="/"
               className="bg-orange-500 text-white py-2 px-4 rounded-md hover:bg-orange-600 transition-colors"

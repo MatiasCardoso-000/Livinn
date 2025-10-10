@@ -5,8 +5,6 @@ import type { Restaurants } from "../../types/restaurantes.type";
 export const RestaurantCard = (restaurant: Restaurants) => {
   const navigate = useNavigate();
 
-
-
   return (
     <article className="bg-white rounded-lg shadow-sm overflow-hidden border border-gray-100">
       <img

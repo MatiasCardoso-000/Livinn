@@ -110,7 +110,7 @@ export const RestaurantReservation: React.FC = () => {
               email: "",
               phone: "",
               specialRequests: "",
-              id:restaurant.id
+              id: restaurant.id,
             }}
             validationSchema={ReservationSchema}
             onSubmit={(values, { setSubmitting }) => {
@@ -130,7 +130,7 @@ export const RestaurantReservation: React.FC = () => {
                 customerEmail: values.email,
                 customerPhone: values.phone,
                 specialRequests: values.specialRequests,
-                id: values.id
+                id: values.id,
               };
 
               // Navegar a la página de confirmación
