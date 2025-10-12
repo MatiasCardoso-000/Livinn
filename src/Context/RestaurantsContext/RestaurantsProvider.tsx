@@ -10,13 +10,15 @@ interface RestaurantsProviderProps {
 
 export const RestaurantsProvider = ({ children }: RestaurantsProviderProps) => {
   const [restaurants, setRestaurants] = useState<Restaurants[]>(() => {
-    const saved = localStorage.getItem("restaurnts");
+    const saved = localStorage.getItem("restaurants");
     return saved ? JSON.parse(saved) : RESTAURANTS;
   });
   const [reservations, setReservations] = useState<ReservationDetails[]>(() => {
     const saved = localStorage.getItem("reservation");
     return saved ? JSON.parse(saved) : [];
   });
+  const [isSorted, setIsSorted] = useState<boolean>(false);
+  // const [orderByRating, setOrderByRating] = useState<boolean>(false);
 
   const handleReservations = (reservation: ReservationDetails) => {
     const reservationExists = reservations.some((res) => {
@@ -28,6 +30,20 @@ export const RestaurantsProvider = ({ children }: RestaurantsProviderProps) => {
     }
   };
 
+  const handleSort = (checked: boolean) => {
+    setIsSorted(checked);
+
+    if (checked) {
+      const sorted = [...restaurants].sort((a, b) => {
+        return a.name.localeCompare(b.name, "es", { sensitivity: "base" });
+      });
+      setRestaurants(sorted);
+    } else {
+      setRestaurants(RESTAURANTS);
+    }
+  };
+
+
   useEffect(() => {
     localStorage.setItem("restaurants", JSON.stringify(restaurants));
   }, [restaurants]);
@@ -36,29 +52,16 @@ export const RestaurantsProvider = ({ children }: RestaurantsProviderProps) => {
     localStorage.setItem("reservations", JSON.stringify(reservations));
   }, [reservations]);
 
-  // const newResto = [...restaurants];
-  // const restaurantReserved = newResto.findIndex((res) => {
-  //   reservations.map((r) => r.id === res.id);
-  // });
-
-  // if (restaurantReserved !== -1) {
-  //   newResto[restaurantReserved].capacity -=
-  //     reservations[restaurantReserved].people;
-  //   if (newResto[restaurantReserved].capacity === 0) {
-  //     newResto[restaurantReserved].availability = false;
-  //     setRestaurants([...newResto]);
-  //     localStorage.setItem("restaurants", JSON.stringify(newResto));
-  //   }
-  // }
-  // localStorage.setItem("restaurants", JSON.stringify(newResto));
-
   return (
     <RestaurantsContext.Provider
       value={{
+        isSorted,
+        handleSort,
         restaurants,
         reservations,
         setReservations,
         handleReservations,
+        setIsSorted,
       }}
     >
       {children}

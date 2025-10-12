@@ -1,6 +1,7 @@
 import { Field, Form, Formik } from "formik";
 import useSearch from "../../hooks/useSearch";
 import Button from "../Button/Button";
+import { useRestaurants } from "../../hooks";
 
 export const Aside = () => {
   const {
@@ -14,6 +15,8 @@ export const Aside = () => {
     setSearchCity,
   } = useSearch();
 
+  const { isSorted, handleSort } = useRestaurants();
+
   return (
     <aside className="w-full md:w-1/4 lg:w-1/5 p-6 bg-white rounded-xl shadow-sm border border-gray-100 h-fit">
       <h3 className="text-xl font-semibold text-gray-900 mb-6">Filtros</h3>
@@ -26,6 +29,8 @@ export const Aside = () => {
           price: searchForPrice,
           availability: isAvailable,
           location: "",
+          sorted: isSorted,
+          rating: isSorted
         }}
         onSubmit={(values, { setSubmitting }) => {
           setSearchRestaurant(values.restaurant);
@@ -35,6 +40,7 @@ export const Aside = () => {
           setSubmitting(false);
           setIsAvaiable(values.availability);
           setSearchCity(values.location);
+          handleSort(values.sorted);
         }}
       >
         {({ handleSubmit }) => (
@@ -133,7 +139,7 @@ export const Aside = () => {
               />
               <span>{searchForPrice}</span>
             </div>
-            <div className="flex w-full ">
+            <div className="flex w-full justify-between">
               <label
                 htmlFor="availability"
                 className="block text-sm font-medium text-gray-700 mb-1"
@@ -148,6 +154,21 @@ export const Aside = () => {
               />
             </div>
 
+            <div className="flex w-full justify-between">
+              <label
+                htmlFor="sorted"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
+                A-Z
+              </label>
+              <Field
+                id="sorted"
+                name="sorted"
+                type="checkbox"
+                className="w-1/4 px-3 py-2 border border-gray-300"
+              />
+            </div>
+         
             <Button
               type="submit"
               className="w-full bg-orange-500 text-white py-1 rounded-md hover:bg-orange-600"

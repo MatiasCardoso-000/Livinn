@@ -2,15 +2,15 @@ import type { Restaurants } from "../types/restaurantes.type";
 
 export const useFilters = () => {
   const filterRestaurants = (
-    restaurantes: Restaurants[],
+    restaurants: Restaurants[],
     searchRestaurant: string,
     searchForCapacity: number,
     searchForCategory: string,
     searchForPrice: number,
     isAvailable: boolean,
-    setSearchCity: string
+    setSearchCity: string,
   ) => {
-    return restaurantes.filter((res) => {
+    return restaurants.filter((res) => {
       const matchesName = res.name
         .toLocaleLowerCase()
         .includes(searchRestaurant.toLocaleLowerCase());
@@ -23,11 +23,7 @@ export const useFilters = () => {
       const matchesCity = res.location
         .toLocaleLowerCase()
         .includes(setSearchCity.toLocaleLowerCase());
-
-      
-
-
-
+    
       return (
         matchesName &&
         matchesCapacity &&

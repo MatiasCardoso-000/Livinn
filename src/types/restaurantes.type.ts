@@ -10,4 +10,5 @@ export interface Restaurants {
   category: string;
   average_price: number;
   capacity:number;
+
 }

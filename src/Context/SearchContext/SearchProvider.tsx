@@ -8,7 +8,6 @@ export const SearchProvider = ({ children }: { children: React.ReactNode }) => {
   const [searchForCapacity, setSearchForCapacity] = useState<number>(0);
   const [searchForPrice, setSearchForPrice] = useState<number>(0);
   const [isAvailable, setIsAvaiable] = useState<boolean>(false);
-  
 
   return (
     <SearchContext.Provider
@@ -24,7 +23,7 @@ export const SearchProvider = ({ children }: { children: React.ReactNode }) => {
         setSearchForCapacity,
         setSearchForCategory,
         setSearchForPrice,
-        setSearchCity
+        setSearchCity,
       }}
     >
       {children}

@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { useRestaurants } from "../../hooks";
 
 export const UserReservations = () => {
-  const storagedUser = JSON.parse(localStorage.getItem("user") || "");
   const { reservations } = useRestaurants();
 
   // Filtra las reservas para el usuario actual

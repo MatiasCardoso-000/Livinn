@@ -1,12 +1,9 @@
 import { Aside, RestaurantCard } from "../../components/index";
-import { useSearch, useFilters} from "../../hooks/index";
+import { useSearch, useFilters,useRestaurants} from "../../hooks/index";
 
 export const RestaurantsList = () => {
 
-  const saved = localStorage.getItem('restaurants')
-
-  const storeRestaurants = saved ? JSON.parse(saved) : []
-
+  const {restaurants} = useRestaurants()
 
   const { filterRestaurants } = useFilters();
   const {
@@ -18,13 +15,13 @@ export const RestaurantsList = () => {
     searchCity,
   } = useSearch();
   const filteredRestaurants = filterRestaurants(
-    storeRestaurants,
+    restaurants,
     searchRestaurant,
     searchForCapacity,
     searchForCategory,
     searchForPrice,
     isAvailable,
-    searchCity
+    searchCity,
   );
 
   return (
