@@ -18,7 +18,6 @@ export const RestaurantsProvider = ({ children }: RestaurantsProviderProps) => {
     return saved ? JSON.parse(saved) : [];
   });
   const [isSorted, setIsSorted] = useState<boolean>(false);
-  // const [orderByRating, setOrderByRating] = useState<boolean>(false);
 
   const handleReservations = (reservation: ReservationDetails) => {
     const reservationExists = reservations.some((res) => {
